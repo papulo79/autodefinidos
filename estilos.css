@@ -17,7 +17,47 @@ body {
 .container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 10px;
+    /* padding: 10px; */
+}
+
+/* Header */
+header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+header h1 {
+    color: white;
+    font-size: 2rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    margin: 0;
+}
+
+.info-nivel {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#nivel-actual {
+    color: white;
+    font-size: 1.2rem;
+    font-weight: bold;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 8px 16px;
+    border-radius: 20px;
+}
+
+.btn-selector {
+    background: #fff;
+    color: #667eea;
+}
+
+.btn-selector:hover {
+    background: #f0f0f0;
 }
 
 /* Crucigrama */
@@ -192,7 +232,7 @@ body {
     background: rgba(0, 0, 0, 0.7);
     z-index: 1000;
     justify-content: center;
-    align-items: start;
+    /* align-items: center; */
     padding: 20px;
 }
 
@@ -208,6 +248,13 @@ body {
     width: 400px;
     box-shadow: 0 16px 48px rgba(0, 0, 0, 0.4);
     animation: slideIn 0.3s ease;
+}
+
+.modal-niveles-contenido {
+    width: 500px;
+    max-width: 95vw;
+    max-height: 80vh;
+    overflow-y: auto;
 }
 
 @keyframes slideIn {
@@ -332,11 +379,89 @@ body {
     background: #5568d3;
 }
 
+/* Lista de niveles */
+.lista-niveles {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.nivel-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background: #f5f5f5;
+    border-radius: 10px;
+    border: 2px solid #e0e0e0;
+    transition: all 0.3s ease;
+}
+
+.nivel-item:hover {
+    background: #e3f2fd;
+    border-color: #2196f3;
+}
+
+.nivel-item.bloqueado {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.nivel-item.bloqueado:hover {
+    background: #f5f5f5;
+    border-color: #e0e0e0;
+}
+
+.nivel-item.completado {
+    border-color: #4caf50;
+    background: #e8f5e9;
+}
+
+.nivel-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex: 1;
+}
+
+.nivel-icono {
+    font-size: 1.5rem;
+    min-width: 30px;
+    text-align: center;
+}
+
+.nivel-texto {
+    display: flex;
+    flex-direction: column;
+}
+
+.nivel-numero {
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: #333;
+}
+
+.nivel-tema {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.btn-jugar {
+    background: #667eea;
+    color: white;
+    padding: 8px 20px;
+    font-size: 0.9rem;
+}
+
+.btn-jugar:hover {
+    background: #5568d3;
+}
+
 /* Layout principal del juego */
 .layout-juego {
     display: grid;
     gap: 15px;
-    margin-bottom: 20px;
+    margin-bottom: 5px;
     align-items: start;
 }
 
@@ -369,7 +494,7 @@ body {
     border-radius: 12px;
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
     overflow: hidden;
-    margin-bottom: 20px;
+    /* margin-bottom: 20px; */
 }
 
 .tabs-header {
@@ -413,7 +538,7 @@ body {
 .tab-pane {
     display: none;
     padding: 15px;
-    max-height: 30vh;
+    max-height: 27vh;
     overflow-y: auto;
 }
 
@@ -477,6 +602,9 @@ body {
     .btn {
         padding: 10px 20px;
         font-size: 0.9rem;
+    }
+    .modal{
+        align-items: center;
     }
 }
 
@@ -550,6 +678,9 @@ body {
     .tab-pane {
         max-height: 25vh;
     }
+    .modal{
+        align-items: start;
+    }
 }
 
 /* Responsive - Panorámico (≥768px) */
@@ -573,11 +704,56 @@ body {
         display: flex;
         flex-direction: column;
     }
+    .modal{
+        align-items: start;
+    }
 }
 
 @media (min-width: 768px) and (max-width: 1024px) {
     .cuadro-letra {
         width: 48px;
         height: 48px;
+    }
+}
+
+/* Header responsive */
+@media (max-width: 767px) {
+    header h1 {
+        font-size: 1.5rem;
+    }
+    
+    #nivel-actual {
+        font-size: 1rem;
+        padding: 6px 12px;
+    }
+    
+    .info-nivel {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .modal-niveles-contenido {
+        width: 95vw;
+        padding: 15px;
+    }
+    
+    .nivel-item {
+        padding: 12px;
+    }
+    
+    .nivel-numero {
+        font-size: 1rem;
+    }
+    
+    .nivel-tema {
+        font-size: 0.85rem;
+    }
+    
+    .btn-jugar {
+        padding: 6px 12px;
+        font-size: 0.85rem;
+    }
+    .modal{
+        align-items: start;
     }
 }

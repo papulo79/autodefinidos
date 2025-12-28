@@ -1,35 +1,173 @@
-// Diccionario de palabras con pistas y orientación
-const diccionario = [
-  { palabra: "AMOR", orientacion: "H", pista: "Sentimiento intenso de afecto" },
-  { palabra: "MAR", orientacion: "H", pista: "Masa de agua salada" },
-  { palabra: "MAL", orientacion: "H", pista: "Opuesto al bien" },
-  { palabra: "CASA", orientacion: "H", pista: "Vivienda humana" },
-  { palabra: "SOL", orientacion: "H", pista: "Estrella central del sistema solar" },
-  { palabra: "FLOR", orientacion: "H", pista: "Estructura reproductiva de las plantas" },
-  { palabra: "CIELO", orientacion: "H", pista: "Espacio sobre la tierra" },
-  { palabra: "PAN", orientacion: "H", pista: "Alimento básico hecho de harina" },
-  { palabra: "AZUL", orientacion: "H", pista: "Color del cielo y el mar" },
-  { palabra: "ROSA", orientacion: "H", pista: "Flor de color y aroma" },
-  { palabra: "AGUA", orientacion: "H", pista: "Líquido esencial para la vida" },
-  { palabra: "FUEGO", orientacion: "H", pista: "Reacción química con luz y calor" },
-  { palabra: "TIERRA", orientacion: "H", pista: "Planeta donde vivimos" },
-  { palabra: "AIRE", orientacion: "H", pista: "Mezcla de gases que respiramos" },
-  { palabra: "VIDA", orientacion: "H", pista: "Condición de nacer, crecer y morir" },
-  { palabra: "MUNDO", orientacion: "H", pista: "Conjunto de todas las cosas" },
-  { palabra: "LUZ", orientacion: "H", pista: "Radiación que permite ver" },
-  { palabra: "NOCHE", orientacion: "H", pista: "Periodo de oscuridad diaria" },
-  { palabra: "DIA", orientacion: "H", pista: "Periodo de luz solar" },
-  { palabra: "TIEMPO", orientacion: "H", pista: "Medida de duración de eventos" },
-  { palabra: "LIBRO", orientacion: "H", pista: "Conjunto de hojas escritas" },
-  { palabra: "PUEBLO", orientacion: "H", pista: "Comunidad de personas" },
-  { palabra: "CIUDAD", orientacion: "H", pista: "Centro urbano grande" },
-  { palabra: "CAMINO", orientacion: "H", pista: "Vía para ir de un lugar a otro" },
-  { palabra: "PUENTE", orientacion: "H", pista: "Estructura para cruzar un obstáculo" },
-  { palabra: "MESA", orientacion: "H", pista: "Mueble con superficie plana" },
-  { palabra: "SILLA", orientacion: "H", pista: "Asiento con respaldo" },
-  { palabra: "CAMA", orientacion: "H", pista: "Mueble para dormir" },
-  { palabra: "COCINA", orientacion: "H", pista: "Lugar donde se prepara comida" },
-  { palabra: "BAÑO", orientacion: "H", pista: "Habitación con inodoro y ducha" }
+// ============================================
+// NIVELES TEMÁTICOS
+// ============================================
+
+const niveles = [
+  {
+    id: 1,
+    tema: "Naturaleza",
+    palabras: [
+      { palabra: "AMOR", orientacion: "H", pista: "Sentimiento intenso de afecto" },
+      { palabra: "MAR", orientacion: "H", pista: "Masa de agua salada" },
+      { palabra: "SOL", orientacion: "H", pista: "Estrella central del sistema solar" },
+      { palabra: "FLOR", orientacion: "H", pista: "Estructura reproductiva de las plantas" },
+      { palabra: "CIELO", orientacion: "H", pista: "Espacio sobre la tierra" },
+      { palabra: "AGUA", orientacion: "H", pista: "Líquido esencial para la vida" },
+      { palabra: "FUEGO", orientacion: "H", pista: "Reacción química con luz y calor" },
+      { palabra: "TIERRA", orientacion: "H", pista: "Planeta donde vivimos" },
+      { palabra: "AIRE", orientacion: "H", pista: "Mezcla de gases que respiramos" },
+      { palabra: "VIDA", orientacion: "H", pista: "Condición de nacer, crecer y morir" }
+    ]
+  },
+  {
+    id: 2,
+    tema: "Tiempo y Espacio",
+    palabras: [
+      { palabra: "MUNDO", orientacion: "H", pista: "Conjunto de todas las cosas" },
+      { palabra: "LUZ", orientacion: "H", pista: "Radiación que permite ver" },
+      { palabra: "NOCHE", orientacion: "H", pista: "Periodo de oscuridad diaria" },
+      { palabra: "DIA", orientacion: "H", pista: "Periodo de luz solar" },
+      { palabra: "TIEMPO", orientacion: "H", pista: "Medida de duración de eventos" },
+      { palabra: "AYER", orientacion: "H", pista: "Día anterior al hoy" },
+      { palabra: "HOY", orientacion: "H", pista: "Día presente" },
+      { palabra: "MAÑANA", orientacion: "H", pista: "Día siguiente al hoy" },
+      { palabra: "SIGLO", orientacion: "H", pista: "Periodo de cien años" },
+      { palabra: "HORA", orientacion: "H", pista: "Sexta parte del día" }
+    ]
+  },
+  {
+    id: 3,
+    tema: "Casa y Hogar",
+    palabras: [
+      { palabra: "CASA", orientacion: "H", pista: "Vivienda humana" },
+      { palabra: "PAN", orientacion: "H", pista: "Alimento básico hecho de harina" },
+      { palabra: "MESA", orientacion: "H", pista: "Mueble con superficie plana" },
+      { palabra: "SILLA", orientacion: "H", pista: "Asiento con respaldo" },
+      { palabra: "CAMA", orientacion: "H", pista: "Mueble para dormir" },
+      { palabra: "COCINA", orientacion: "H", pista: "Lugar donde se prepara comida" },
+      { palabra: "BAÑO", orientacion: "H", pista: "Habitación con inodoro y ducha" },
+      { palabra: "SALA", orientacion: "H", pista: "Habitación principal de la casa" },
+      { palabra: "PUERTA", orientacion: "H", pista: "Abertura para entrar o salir" },
+      { palabra: "VENTANA", orientacion: "H", pista: "Abertura con cristal en la pared" }
+    ]
+  },
+  {
+    id: 4,
+    tema: "Transporte",
+    palabras: [
+      { palabra: "CAMINO", orientacion: "H", pista: "Vía para ir de un lugar a otro" },
+      { palabra: "PUENTE", orientacion: "H", pista: "Estructura para cruzar un obstáculo" },
+      { palabra: "AUTO", orientacion: "H", pista: "Vehículo automotor" },
+      { palabra: "BICI", orientacion: "H", pista: "Vehículo de dos ruedas" },
+      { palabra: "BUS", orientacion: "H", pista: "Vehículo de transporte público" },
+      { palabra: "TREN", orientacion: "H", pista: "Vehículo sobre rieles" },
+      { palabra: "BARCO", orientacion: "H", pista: "Vehículo que navega en el agua" },
+      { palabra: "AVION", orientacion: "H", pista: "Vehículo que vuela" },
+      { palabra: "CALLE", orientacion: "H", pista: "Vía urbana para vehículos" },
+      { palabra: "ESTACION", orientacion: "H", pista: "Lugar donde paran vehículos" }
+    ]
+  },
+  {
+    id: 5,
+    tema: "Arte y Cultura",
+    palabras: [
+      { palabra: "LIBRO", orientacion: "H", pista: "Conjunto de hojas escritas" },
+      { palabra: "ARTE", orientacion: "H", pista: "Expresión humana creativa" },
+      { palabra: "MUSICA", orientacion: "H", pista: "Arte de combinar sonidos" },
+      { palabra: "DANZA", orientacion: "H", pista: "Arte de moverse con ritmo" },
+      { palabra: "PINTURA", orientacion: "H", pista: "Arte de representar con colores" },
+      { palabra: "TEATRO", orientacion: "H", pista: "Arte de representar obras" },
+      { palabra: "POESIA", orientacion: "H", pista: "Arte de escribir en verso" },
+      { palabra: "CUENTO", orientacion: "H", pista: "Narración breve de ficción" },
+      { palabra: "LETRA", orientacion: "H", pista: "Símbolo gráfico de un sonido" },
+      { palabra: "COLOR", orientacion: "H", pista: "Sensación visual producida por la luz" }
+    ]
+  },
+  {
+    id: 6,
+    tema: "Comida",
+    palabras: [
+      { palabra: "AZUL", orientacion: "H", pista: "Color del cielo y el mar" },
+      { palabra: "ROSA", orientacion: "H", pista: "Flor de color y aroma" },
+      { palabra: "FRUTA", orientacion: "H", pista: "Producto comestible de las plantas" },
+      { palabra: "VERDURA", orientacion: "H", pista: "Hortaliza comestible" },
+      { palabra: "CARNE", orientacion: "H", pista: "Carne de animal" },
+      { palabra: "PESCADO", orientacion: "H", pista: "Animal acuático comestible" },
+      { palabra: "SOPA", orientacion: "H", pista: "Plato líquido" },
+      { palabra: "PASTEL", orientacion: "H", pista: "Postre dulce horneado" },
+      { palabra: "SAL", orientacion: "H", pista: "Condimento para sazonar" },
+      { palabra: "AZUCAR", orientacion: "H", pista: "Edulcorante natural" }
+    ]
+  },
+  {
+    id: 7,
+    tema: "Animales",
+    palabras: [
+      { palabra: "PERRO", orientacion: "H", pista: "Animal doméstico fiel" },
+      { palabra: "GATO", orientacion: "H", pista: "Felino doméstico" },
+      { palabra: "CABALLO", orientacion: "H", pista: "Animal equino" },
+      { palabra: "VACA", orientacion: "H", pista: "Animal que da leche" },
+      { palabra: "CERDO", orientacion: "H", pista: "Animal de granja" },
+      { palabra: "OVEJA", orientacion: "H", pista: "Animal con lana" },
+      { palabra: "GALLINA", orientacion: "H", pista: "Ave de granja" },
+      { palabra: "PATO", orientacion: "H", pista: "Ave acuática" },
+      { palabra: "CONEJO", orientacion: "H", pista: "Pequeño mamífero de orejas largas" },
+      { palabra: "LEON", orientacion: "H", pista: "Rey de la selva" }
+    ]
+  },
+  {
+    id: 8,
+    tema: "Partes del Cuerpo",
+    palabras: [
+      { palabra: "CABEZA", orientacion: "H", pista: "Parte superior del cuerpo" },
+      { palabra: "OJO", orientacion: "H", pista: "Órgano de la visión" },
+      { palabra: "NARIZ", orientacion: "H", pista: "Órgano del olfato" },
+      { palabra: "BOCA", orientacion: "H", pista: "Abertura para comer y hablar" },
+      { palabra: "MANO", orientacion: "H", pista: "Extremidad superior" },
+      { palabra: "PIE", orientacion: "H", pista: "Extremidad inferior" },
+      { palabra: "BRAZO", orientacion: "H", pista: "Miembro superior del cuerpo" },
+      { palabra: "PIERNA", orientacion: "H", pista: "Miembro inferior del cuerpo" },
+      { palabra: "CORAZON", orientacion: "H", pista: "Órgano vital que bombea sangre" },
+      { palabra: "DIENTE", orientacion: "H", pista: "Pieza ósea en la boca" }
+    ]
+  },
+  {
+    id: 9,
+    tema: "Ropa",
+    palabras: [
+      { palabra: "CAMISA", orientacion: "H", pista: "Prenda para el torso" },
+      { palabra: "PANTALON", orientacion: "H", pista: "Prenda para las piernas" },
+      { palabra: "ZAPATO", orientacion: "H", pista: "Calzado para los pies" },
+      { palabra: "GORRA", orientacion: "H", pista: "Prenda para la cabeza" },
+      { palabra: "GUANTE", orientacion: "H", pista: "Prenda para las manos" },
+      { palabra: "CHAQUETA", orientacion: "H", pista: "Prenda abrigada" },
+      { palabra: "VESTIDO", orientacion: "H", pista: "Prenda femenina completa" },
+      { palabra: "CALCETIN", orientacion: "H", pista: "Prenda para el pie" },
+      { palabra: "SOMBRERO", orientacion: "H", pista: "Prenda para proteger del sol" },
+      { palabra: "BUFANDA", orientacion: "H", pista: "Prenda para el cuello" }
+    ]
+  },
+  {
+    id: 10,
+    tema: "Nivel Maestro",
+    palabras: [
+      { palabra: "AMOR", orientacion: "H", pista: "Sentimiento intenso de afecto" },
+      { palabra: "TIEMPO", orientacion: "H", pista: "Medida de duración de eventos" },
+      { palabra: "LIBRO", orientacion: "H", pista: "Conjunto de hojas escritas" },
+      { palabra: "CAMINO", orientacion: "H", pista: "Vía para ir de un lugar a otro" },
+      { palabra: "CORAZON", orientacion: "H", pista: "Órgano vital que bombea sangre" },
+      { palabra: "MUNDO", orientacion: "H", pista: "Conjunto de todas las cosas" },
+      { palabra: "CIELO", orientacion: "H", pista: "Espacio sobre la tierra" },
+      { palabra: "FUEGO", orientacion: "H", pista: "Reacción química con luz y calor" },
+      { palabra: "VIDA", orientacion: "H", pista: "Condición de nacer, crecer y morir" },
+      { palabra: "LUZ", orientacion: "H", pista: "Radiación que permite ver" },
+      { palabra: "NOCTURNO", orientacion: "H", pista: "Relativo a la noche" },
+      { palabra: "ETERNIDAD", orientacion: "H", pista: "Duración infinita" },
+      { palabra: "FANTASIA", orientacion: "H", pista: "Imaginación sin límites" },
+      { palabra: "POESIA", orientacion: "H", pista: "Arte de escribir en verso" },
+      { palabra: "ABUNDANCIA", orientacion: "H", pista: "Gran cantidad de algo" }
+    ]
+  }
 ];
 
 // Estado del juego
@@ -40,7 +178,10 @@ let estadoJuego = {
   palabrasColocadas: [],
   letrasIngresadas: {},
   palabrasCompletadas: {},
-  palabraActual: null
+  palabraActual: null,
+  nivelActual: 1,
+  nivelMaximoAlcanzado: 1,
+  nivelesCompletados: []
 };
 
 // Direcciones
@@ -51,10 +192,14 @@ const DIRECCION = {
 
 // Inicializar juego al cargar
 document.addEventListener('DOMContentLoaded', () => {
+  cargarProgreso();
   inicializarJuego();
 });
 
-function inicializarJuego() {
+function inicializarJuego(nivel = estadoJuego.nivelActual) {
+  estadoJuego.nivelActual = nivel;
+  actualizarInfoNivel();
+  
   // Generar crucigrama
   generarAutodefinido(estadoJuego.ancho, estadoJuego.alto);
   
@@ -64,6 +209,11 @@ function inicializarJuego() {
   
   // Configurar eventos
   configurarEventos();
+}
+
+function actualizarInfoNivel() {
+  const nivel = niveles.find(n => n.id === estadoJuego.nivelActual);
+  document.getElementById('nivel-actual').textContent = `Nivel ${nivel.id}: ${nivel.tema}`;
 }
 
 // ============================================
@@ -92,8 +242,11 @@ function generarAutodefinido(ancho, alto) {
   estadoJuego.letrasIngresadas = {};
   estadoJuego.palabrasCompletadas = {};
   
+  // Obtener palabras del nivel actual
+  const nivel = niveles.find(n => n.id === estadoJuego.nivelActual);
+  
   // Ordenar palabras por longitud (descendente) y mezclarlas aleatoriamente
-  let palabrasOrdenadas = [...diccionario].sort((a, b) => b.palabra.length - a.palabra.length);
+  let palabrasOrdenadas = [...nivel.palabras].sort((a, b) => b.palabra.length - a.palabra.length);
   
   // Mezclar palabras del mismo largo para variedad
   palabrasOrdenadas = mezclarArray(palabrasOrdenadas);
@@ -121,8 +274,11 @@ function generarCrucigramaSimple(ancho, alto) {
   const centroFila = Math.floor(alto / 2);
   const centroCol = Math.floor(ancho / 2);
   
+  // Obtener palabras del nivel actual
+  const nivel = niveles.find(n => n.id === estadoJuego.nivelActual);
+  
   // Buscar la palabra más larga que quepa
-  for (const palabraInfo of diccionario) {
+  for (const palabraInfo of nivel.palabras) {
     if (palabraInfo.palabra.length <= ancho) {
       colocarPalabra(palabraInfo, centroFila, centroCol, DIRECCION.HORIZONTAL);
       break;
@@ -731,7 +887,55 @@ function verificarTodo() {
   renderizarPistas();
   
   if (todoCorrecto) {
-    alert('¡Felicidades! Has completado correctamente todas las palabras.');
+    nivelCompletado();
+  }
+}
+
+function nivelCompletado() {
+  // Marcar nivel como completado
+  if (!estadoJuego.nivelesCompletados.includes(estadoJuego.nivelActual)) {
+    estadoJuego.nivelesCompletados.push(estadoJuego.nivelActual);
+  }
+  
+  // Actualizar nivel máximo alcanzado
+  if (estadoJuego.nivelActual >= estadoJuego.nivelMaximoAlcanzado) {
+    estadoJuego.nivelMaximoAlcanzado = estadoJuego.nivelActual + 1;
+  }
+  
+  // Guardar progreso en localStorage
+  guardarProgreso();
+  
+  // Mostrar mensaje y preguntar si quiere continuar al siguiente nivel
+  const nivel = niveles.find(n => n.id === estadoJuego.nivelActual);
+  const mensaje = `¡Felicidades! Has completado el nivel ${nivel.id}: ${nivel.tema}`;
+  
+  if (estadoJuego.nivelActual < niveles.length) {
+    if (confirm(`${mensaje}\n\n¿Quieres continuar al siguiente nivel?`)) {
+      inicializarJuego(estadoJuego.nivelActual + 1);
+    }
+  } else {
+    alert(`${mensaje}\n\n¡Has completado todos los niveles!`);
+  }
+}
+
+function guardarProgreso() {
+  const progreso = {
+    nivelMaximoAlcanzado: estadoJuego.nivelMaximoAlcanzado,
+    nivelesCompletados: estadoJuego.nivelesCompletados
+  };
+  localStorage.setItem('autodefinidos_progreso', JSON.stringify(progreso));
+}
+
+function cargarProgreso() {
+  const progresoGuardado = localStorage.getItem('autodefinidos_progreso');
+  if (progresoGuardado) {
+    try {
+      const progreso = JSON.parse(progresoGuardado);
+      estadoJuego.nivelMaximoAlcanzado = progreso.nivelMaximoAlcanzado || 1;
+      estadoJuego.nivelesCompletados = progreso.nivelesCompletados || [];
+    } catch (e) {
+      console.error('Error al cargar progreso:', e);
+    }
   }
 }
 
@@ -815,7 +1019,7 @@ function verificarPalabra(palabraInfo) {
 // ============================================
 
 function configurarEventos() {
-  // Modal
+  // Modal de entrada
   document.getElementById('modal-cerrar').addEventListener('click', cerrarModal);
   document.getElementById('modal-cancelar').addEventListener('click', cerrarModal);
   document.getElementById('modal-guardar').addEventListener('click', guardarLetrasModal);
@@ -827,23 +1031,89 @@ function configurarEventos() {
     }
   });
   
+  // Modal de niveles
+  document.getElementById('btn-selector-niveles').addEventListener('click', abrirModalNiveles);
+  document.getElementById('niveles-cerrar').addEventListener('click', cerrarModalNiveles);
+  document.getElementById('modal-niveles').addEventListener('click', (e) => {
+    if (e.target.id === 'modal-niveles') {
+      cerrarModalNiveles();
+    }
+  });
+  
   // Botones de control
   document.getElementById('btn-verificar').addEventListener('click', verificarTodo);
   document.getElementById('btn-reiniciar').addEventListener('click', () => {
-    if (confirm('¿Seguro que quieres empezar un nuevo juego?')) {
+    if (confirm('¿Seguro que quieres reiniciar este nivel?')) {
       inicializarJuego();
     }
   });
   
-  // Tecla Escape para cerrar modal
+  // Tecla Escape para cerrar modales
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
       cerrarModal();
+      cerrarModalNiveles();
     }
   });
   
   // Pestañas móviles
   configurarPestanas();
+}
+
+// ============================================
+// MODAL DE NIVELES
+// ============================================
+
+function abrirModalNiveles() {
+  renderizarListaNiveles();
+  document.getElementById('modal-niveles').classList.add('active');
+}
+
+function cerrarModalNiveles() {
+  document.getElementById('modal-niveles').classList.remove('active');
+}
+
+function renderizarListaNiveles() {
+  const lista = document.getElementById('lista-niveles');
+  lista.innerHTML = '';
+  
+  niveles.forEach(nivel => {
+    const item = document.createElement('div');
+    item.className = 'nivel-item';
+    
+    const estaDesbloqueado = nivel.id <= estadoJuego.nivelMaximoAlcanzado;
+    const estaCompletado = estadoJuego.nivelesCompletados.includes(nivel.id);
+    
+    if (!estaDesbloqueado) {
+      item.classList.add('bloqueado');
+    }
+    
+    if (estaCompletado) {
+      item.classList.add('completado');
+    }
+    
+    const icono = estaCompletado ? '✓' : (estaDesbloqueado ? nivel.id : '🔒');
+    
+    item.innerHTML = `
+      <div class="nivel-info">
+        <span class="nivel-icono">${icono}</span>
+        <div class="nivel-texto">
+          <span class="nivel-numero">Nivel ${nivel.id}</span>
+          <span class="nivel-tema">${nivel.tema}</span>
+        </div>
+      </div>
+      ${estaDesbloqueado ? `<button class="btn btn-jugar" data-nivel="${nivel.id}">Jugar</button>` : ''}
+    `;
+    
+    if (estaDesbloqueado) {
+      item.querySelector('.btn-jugar').addEventListener('click', () => {
+        cerrarModalNiveles();
+        inicializarJuego(nivel.id);
+      });
+    }
+    
+    lista.appendChild(item);
+  });
 }
 
 // ============================================

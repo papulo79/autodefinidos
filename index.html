@@ -9,10 +9,18 @@
 <body>
     <div class="container">
         <main>
+            <header>
+                <!-- <h1>Autodefinidos</h1> -->
+                <div class="info-nivel">
+                    <span id="nivel-actual">Nivel 1</span>
+                    <button id="btn-selector-niveles" class="btn btn-selector">Niveles</button>
+                </div>
+            </header>
+
             <!-- Botones de control -->
             <div class="botones-control">
                 <button id="btn-verificar" class="btn btn-verificar">Verificar Todo</button>
-                <button id="btn-reiniciar" class="btn btn-reiniciar">Nuevo Juego</button>
+                <button id="btn-reiniciar" class="btn btn-reiniciar">Reiniciar</button>
             </div>
 
             <!-- Layout principal con paneles y crucigrama -->
@@ -64,6 +72,17 @@
                 <button id="modal-cancelar" class="btn btn-cancelar">Cancelar</button>
                 <button id="modal-guardar" class="btn btn-guardar">Guardar</button>
             </div>
+        </div>
+    </div>
+
+    <!-- Modal de selección de niveles -->
+    <div id="modal-niveles" class="modal modal-niveles">
+        <div class="modal-contenido modal-niveles-contenido">
+            <div class="modal-header">
+                <h3>Seleccionar Nivel</h3>
+                <button id="niveles-cerrar" class="modal-cerrar">&times;</button>
+            </div>
+            <div id="lista-niveles" class="lista-niveles"></div>
         </div>
     </div>
 
