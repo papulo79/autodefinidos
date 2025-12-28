@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Autodefinidos</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+    <div class="container">
+        <main>
+            <!-- Botones de control -->
+            <div class="botones-control">
+                <button id="btn-verificar" class="btn btn-verificar">Verificar Todo</button>
+                <button id="btn-reiniciar" class="btn btn-reiniciar">Nuevo Juego</button>
+            </div>
+
+            <!-- Layout principal con paneles y crucigrama -->
+            <div class="layout-juego">
+                <!-- Panel izquierdo: Pistas horizontales -->
+                <div class="panel-pistas panel-izquierdo">
+                    <h2>Horizontales →</h2>
+                    <ul id="pistas-horizontales" class="lista-pistas"></ul>
+                </div>
+
+                <!-- Cuadrícula del crucigrama -->
+                <div id="crucigrama" class="crucigrama"></div>
+
+                <!-- Panel derecho: Pistas verticales -->
+                <div class="panel-pistas panel-derecho">
+                    <h2>Verticales ↓</h2>
+                    <ul id="pistas-verticales" class="lista-pistas"></ul>
+                </div>
+            </div>
+
+            <!-- Pestañas para modo móvil (≤767px) -->
+            <div class="tabs-container">
+                <div class="tabs-header">
+                    <button class="tab-btn active" data-tab="horizontales">Horizontales</button>
+                    <button class="tab-btn" data-tab="verticales">Verticales</button>
+                </div>
+                <div class="tabs-content">
+                    <div class="tab-pane active" id="tab-horizontales">
+                        <ul id="pistas-horizontales-mobile" class="lista-pistas"></ul>
+                    </div>
+                    <div class="tab-pane" id="tab-verticales">
+                        <ul id="pistas-verticales-mobile" class="lista-pistas"></ul>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modal de entrada de palabra -->
+    <div id="modal-entrada" class="modal">
+        <div class="modal-contenido">
+            <div class="modal-header">
+                <h3 id="modal-titulo">Completar palabra</h3>
+                <button id="modal-cerrar" class="modal-cerrar">&times;</button>
+            </div>
+            <p id="modal-pista" class="modal-pista"></p>
+            <div id="modal-cuadros" class="modal-cuadros"></div>
+            <div class="modal-botones">
+                <button id="modal-cancelar" class="btn btn-cancelar">Cancelar</button>
+                <button id="modal-guardar" class="btn btn-guardar">Guardar</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="juego.js"></script>
+</body>
+</html>
