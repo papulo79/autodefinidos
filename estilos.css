@@ -26,7 +26,7 @@ header {
     flex-direction: column;
     align-items: center;
     gap: 10px;
-    margin-bottom: 15px;
+    margin-bottom: 5px;
 }
 
 header h1 {
@@ -537,8 +537,8 @@ header h1 {
 
 .tab-pane {
     display: none;
-    padding: 15px;
-    max-height: 27vh;
+    padding: 5px 15px;
+    max-height: 26vh;
     overflow-y: auto;
 }
 

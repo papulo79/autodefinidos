@@ -209,6 +209,9 @@ function inicializarJuego(nivel = estadoJuego.nivelActual) {
   
   // Configurar eventos
   configurarEventos();
+  
+  // Guardar el nivel actual en progreso
+  guardarProgreso();
 }
 
 function actualizarInfoNivel() {
@@ -872,21 +875,33 @@ function guardarLetrasModal() {
 
 function verificarTodo() {
   let todoCorrecto = true;
+  let totalPalabras = 0;
+  let palabrasCorrectas = 0;
   
   for (const palabraInfo of estadoJuego.palabrasColocadas) {
-    const resultado = verificarPalabra(palabraInfo);
-    
-    if (resultado !== 'correcta') {
+    // Solo verificar si la palabra tiene al menos una letra ingresada
+    if (tieneLetrasIngresadas(palabraInfo)) {
+      const resultado = verificarPalabra(palabraInfo);
+      estadoJuego.palabrasCompletadas[palabraInfo.id] = resultado;
+      
+      if (resultado === 'correcta') {
+        palabrasCorrectas++;
+      } else {
+        todoCorrecto = false;
+      }
+      totalPalabras++;
+    } else {
+      // Palabra sin letras - no marcarla, solo eliminar estado anterior
+      delete estadoJuego.palabrasCompletadas[palabraInfo.id];
       todoCorrecto = false;
     }
-    
-    estadoJuego.palabrasCompletadas[palabraInfo.id] = resultado;
   }
   
   renderizarCrucigrama();
   renderizarPistas();
   
-  if (todoCorrecto) {
+  // Solo marcar como completado si todas las palabras tienen letras y son correctas
+  if (totalPalabras === estadoJuego.palabrasColocadas.length && todoCorrecto) {
     nivelCompletado();
   }
 }
@@ -920,6 +935,7 @@ function nivelCompletado() {
 
 function guardarProgreso() {
   const progreso = {
+    nivelActual: estadoJuego.nivelActual,
     nivelMaximoAlcanzado: estadoJuego.nivelMaximoAlcanzado,
     nivelesCompletados: estadoJuego.nivelesCompletados
   };
@@ -931,6 +947,7 @@ function cargarProgreso() {
   if (progresoGuardado) {
     try {
       const progreso = JSON.parse(progresoGuardado);
+      estadoJuego.nivelActual = progreso.nivelActual || 1;
       estadoJuego.nivelMaximoAlcanzado = progreso.nivelMaximoAlcanzado || 1;
       estadoJuego.nivelesCompletados = progreso.nivelesCompletados || [];
     } catch (e) {
